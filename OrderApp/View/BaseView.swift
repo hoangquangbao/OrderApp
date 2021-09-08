@@ -19,11 +19,13 @@ struct BaseView: View {
     
     var  body: some View {
         
-        Text("Ạksnsjkndsgnks")
-        
+        // Khởi động App cho default ở tab Home "@Published var currentTab: TabList = .Home"
         TabView(selection: $baseData.currentTab) {
             
             Text("home")
+            // Should be zoom in before apply Color
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black.opacity(0.04))
                 .tag(TabList.Home)
             
             Text("heart")
@@ -35,6 +37,7 @@ struct BaseView: View {
             Text("person")
                 .tag(TabList.Person)
         }
+        //.background(Color.black)
         .overlay(
             
             // Custom Tab Bar....
@@ -43,9 +46,49 @@ struct BaseView: View {
             // tabButton....
             TabButton(Tab: .Home)
             TabButton(Tab: .Heart)
+            
+            //Center curved button....
+            Button {
+                
+            } label: {
+                
+                Image("cart")
+                    .resizable()
+                    .renderingMode(.template)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 26, height: 26)
+                    .offset(x: -1)
+                    .foregroundColor(.white)
+                    .padding(18)
+                    .background(Color.blue)
+                    .clipShape(Circle())
+                
+                //shadows....
+//                    .shadow(color: .black.opacity(0.04),
+                    .shadow(color: .red,
+                            radius: 5,
+                            x: 5,
+                            y: 5)
+//                    .shadow(color: .black.opacity(0.04),
+                    .shadow(color: .green,
+                            radius: 5,
+                            x: -5,
+                            y: 5)
+            }
+            .offset(y: -30)
+            
+
+                
             TabButton(Tab: .Clipboard)
             TabButton(Tab: .Person)
         }
+                .background(Color.white.clipShape(CustomCurveShape())
+                                .shadow(color: .red,
+                                        radius: 5,
+                                        x: -5,
+                                        y: -5)
+                           )
+//                .shadow(color: .black.opacity(0.04),
             ,alignment: .bottom
         )
     }
@@ -65,8 +108,7 @@ struct BaseView: View {
                 .renderingMode(.template)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 25, height: 25)
-                //Lần load đầu tiên sẽ cho nổi bật phím Home (@Published var currentTab: Tab = .Home)
-                .foregroundColor(baseData.currentTab == Tab ? Color.gray : Color.gray.opacity(0.5))
+                .foregroundColor(baseData.currentTab == Tab ? Color.orange : Color.gray.opacity(0.5))
                 .frame(maxWidth: .infinity)
         }
 
