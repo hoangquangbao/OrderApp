@@ -64,13 +64,11 @@ struct BaseView: View {
                     .clipShape(Circle())
                 
                 //shadows....
-//                    .shadow(color: .black.opacity(0.04),
-                    .shadow(color: .red,
+                    .shadow(color: .black.opacity(0.04),
                             radius: 5,
                             x: 5,
                             y: 5)
-//                    .shadow(color: .black.opacity(0.04),
-                    .shadow(color: .green,
+                    .shadow(color: .black.opacity(0.04),
                             radius: 5,
                             x: -5,
                             y: 5)
@@ -84,13 +82,12 @@ struct BaseView: View {
         }
                 .background(
                     Color.white.clipShape(CustomCurveShape())
-                        .shadow(color: .red,
+                .shadow(color: .black.opacity(0.04),
                                 radius: 5,
                                 x: -5,
                                 y: -5)
                         .ignoresSafeArea(.container, edges: .bottom)
                 )
-//                .shadow(color: .black.opacity(0.04),
             ,alignment: .bottom
         )
     }
