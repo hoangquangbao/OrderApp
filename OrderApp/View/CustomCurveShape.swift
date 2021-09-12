@@ -22,16 +22,15 @@ struct CustomCurveShape: Shape {
             
             //center Curve....
             let mid = rect.width / 2
-            
+
             path.move(to: CGPoint(x: mid - 70, y: 0))
-            
+
             let to1 = CGPoint(x: mid, y: 45)
             let control1 = CGPoint(x: mid - 35, y: 0)
             let control2 = CGPoint(x: mid - 35, y: 45)
-            
             path.addCurve(to: to1, control1: control1, control2: control2)
-            
-            
+
+
             let to2 = CGPoint(x: mid + 70, y: 0)
             let control3 = CGPoint(x: mid + 35, y: 45)
             let control4 = CGPoint(x: mid + 35, y: 0)

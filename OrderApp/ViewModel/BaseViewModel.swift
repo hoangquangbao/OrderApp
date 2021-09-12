@@ -11,6 +11,8 @@ class BaseViewModel: ObservableObject {
     
     // Tab Bar...
     @Published var currentTab: TabList = .Home
+    
+    @Published var homeTab = "Breakfood"
 }
 
 // Enum Case for Tab Items....
