@@ -16,6 +16,7 @@
 		0663EB2926E6455B0019633C /* OrderAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663EB2826E6455B0019633C /* OrderAppUITests.swift */; };
 		0663EB3926E64AE90019633C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663EB3826E64AE90019633C /* BaseView.swift */; };
 		0663EB3B26E64B3A0019633C /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0663EB3A26E64B3A0019633C /* BaseViewModel.swift */; };
+		069FE33B26F0F22300245519 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069FE33A26F0F22300245519 /* Product.swift */; };
 		06BB130126EA4AE200C7DDC5 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB130026EA4AE200C7DDC5 /* Home.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		0663EB2826E6455B0019633C /* OrderAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAppUITests.swift; sourceTree = "<group>"; };
 		0663EB3826E64AE90019633C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		0663EB3A26E64B3A0019633C /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		069FE33A26F0F22300245519 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		06BB130026EA4AE200C7DDC5 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 		0663EB3526E64A4D0019633C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				069FE33A26F0F22300245519 /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				0663EB1026E6455A0019633C /* ContentView.swift in Sources */,
 				06BB130126EA4AE200C7DDC5 /* Home.swift in Sources */,
 				0663EB0E26E6455A0019633C /* OrderAppApp.swift in Sources */,
+				069FE33B26F0F22300245519 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

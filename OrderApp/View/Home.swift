@@ -65,7 +65,7 @@ struct Home: View {
                                 .font(.caption.bold())
                             
                             Image(systemName: "chevron.down")
-                                    .font(.caption.bold())
+                                .font(.caption.bold())
                         }
                         .foregroundColor(.gray)
                     }
@@ -85,9 +85,26 @@ struct Home: View {
                         SegmentButton(image: "Dinner", title: "Dinner")
                     }
                 }
+                
+                // Product View....
+                let columns = Array(repeating: GridItem(.flexible(), spacing: 15), count: 2)
+                
+                //Grid View....
+                LazyVGrid(columns: columns, spacing: 18) {
+                    
+                    //Product....
+                    ForEach(products){product in
+                        cardView(product: product)
+                        
+                    }
+                }
             }
             .padding()
         }
+    }
+    @ViewBuilder
+    func cardView(product: Product) -> some View {
+        
     }
     
     @ViewBuilder
@@ -125,6 +142,8 @@ struct Home: View {
                     RoundedRectangle(cornerRadius: 10)
                     //.fill(style: <#T##FillStyle#>)
                         .fill(Color.gray.opacity(0.1))
+                    
+                    // Dùng để di chuyển hình nền của các Tab
                         .matchedGeometryEffect(id: "TAB", in: animation)
                         //.shadow(color: .black.opacity(0.04), radius: 5, x: 5, y: 5)
                 }

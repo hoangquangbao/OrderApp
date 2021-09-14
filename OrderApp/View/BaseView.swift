@@ -63,7 +63,7 @@ struct BaseView: View {
                     .offset(x: -1)
                     .foregroundColor(.white)
                     .padding(18)
-                    .background(Color.red)
+                    .background(Color.blue)
                     .clipShape(Circle())
                 
                 //shadows....
