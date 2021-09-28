@@ -14,8 +14,6 @@ struct Home: View {
     @EnvironmentObject var baseData: BaseViewModel
     
     var body: some View {
-        
-        ScrollView(.vertical, showsIndicators: false){
             
             VStack(spacing: 15){
                 
@@ -89,18 +87,19 @@ struct Home: View {
                 // Product View....
                 let columns = Array(repeating: GridItem(.flexible(), spacing: 15), count: 2)
                 
-                //Grid View....
-                LazyVGrid(columns: columns, spacing: 18) {
-                    
-                    //Product....
-                    ForEach(products){product in
-                        CardView(product: product)
+                ScrollView(.vertical, showsIndicators: false){
+                    //Grid View....
+                    LazyVGrid(columns: columns, spacing: 18) {
                         
+                        //Product....
+                        ForEach(products){product in
+                            CardView(product: product)
+                            
+                        }
                     }
                 }
             }
             .padding()
-        }
     }
     @ViewBuilder
     func CardView(product: Product) -> some View {
