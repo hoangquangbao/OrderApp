@@ -78,11 +78,11 @@ struct Home: View {
                     HStack(spacing: 18){
                         
                         //Segmenttab....
-                        SegmentButton(image: "Breakfood", title: "Breakfood")
+                        SegmentButton(icon: "sun.and.horizon.fill", title: "Breakfood")
                         
-                        SegmentButton(image: "Lunch", title: "Lunch")
+                        SegmentButton(icon: "sun.max.fill", title: "Lunch")
                         
-                        SegmentButton(image: "Dinner", title: "Dinner")
+                        SegmentButton(icon: "moon.stars.fill", title: "Dinner")
                     }
                 }
                 
@@ -94,7 +94,7 @@ struct Home: View {
                     
                     //Product....
                     ForEach(products){product in
-                        cardView(product: product)
+                        CardView(product: product)
                         
                     }
                 }
@@ -103,12 +103,37 @@ struct Home: View {
         }
     }
     @ViewBuilder
-    func cardView(product: Product) -> some View {
+    func CardView(product: Product) -> some View {
         
+        VStack(spacing: 15){
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "suit.heart.fill")
+                    .font(.system(size: 13))
+                    .foregroundColor(product.isLike ? .white : .gray)
+                    .padding(5)
+                    .background(
+
+                        Color.red.opacity(product.isLike ? 1 : 0),
+                        in: Circle()
+                    )
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            
+            Image(product.productImage)
+                .resizable()
+                .frame(height: 150)
+                .aspectRatio(contentMode: .fit)
+                
+        }
+        .padding()
+        .background(Color.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 12))
     }
     
     @ViewBuilder
-    func SegmentButton(image: String, title: String) -> some View {
+    func SegmentButton(icon: String, title: String) -> some View {
         
         Button {
             
@@ -119,7 +144,7 @@ struct Home: View {
             
             HStack(spacing: 8){
                 
-                Image(image)
+                Image(systemName: icon)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 27, height: 27)
