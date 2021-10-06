@@ -12,10 +12,10 @@ struct BaseView: View {
     @StateObject var baseData = BaseViewModel()
     
     // Hiding Tab Bar....
-    init() {
-
-        UITabBar.appearance().isHidden = true
-    }
+//    init() {
+//
+//        UITabBar.appearance().isHidden = true
+//    }
     
     var  body: some View {
         
@@ -29,8 +29,8 @@ struct BaseView: View {
 //                .background(Color.black.opacity(0.04))
                 .tag(TabList.Home)
             
-            Text("heart")
-                .tag(TabList.Heart)
+//            Text("heart")
+//                .tag(TabList.Heart)
             
             Text("clipboard")
                 .tag(TabList.Clipboard)

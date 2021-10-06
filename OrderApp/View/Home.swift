@@ -40,7 +40,7 @@ struct Home: View {
                 }
                 .foregroundColor(.red)
                 
-                .overlay(Image("Market Easy Way Logo 2")
+                .overlay(Image("DiLuuQuan Logo")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 200)
@@ -89,7 +89,7 @@ struct Home: View {
                 
                 ScrollView(.vertical, showsIndicators: false){
                     //Grid View....
-                    LazyVGrid(columns: columns, spacing: 18) {
+                    LazyVGrid(columns: columns, spacing: 15) {
                         
                         //Product....
                         ForEach(products){product in
@@ -123,8 +123,22 @@ struct Home: View {
             
             Image(product.productImage)
                 .resizable()
-                .frame(height: 150)
+                .frame(height: 155)
                 .aspectRatio(contentMode: .fit)
+                //.cornerRadius(3)
+                .rotationEffect(.init(degrees: -5))
+//                .background(
+//
+//                    ZStack{
+//                        Circle()
+//                            .fill(product.productBG)
+//                            .padding(-15)
+//                        //White Inner Circle...
+//                        Circle()
+//                            .stroke(Color.white, lineWidth: 1.4)
+//                            .padding(-9)
+//                    }
+//                )
                 
         }
         .padding()
