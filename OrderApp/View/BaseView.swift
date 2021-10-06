@@ -29,8 +29,8 @@ struct BaseView: View {
 //                .background(Color.black.opacity(0.04))
                 .tag(TabList.Home)
             
-//            Text("heart")
-//                .tag(TabList.Heart)
+            Text("heart")
+                .tag(TabList.Heart)
             
             Text("clipboard")
                 .tag(TabList.Clipboard)

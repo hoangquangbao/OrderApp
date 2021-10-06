@@ -84,7 +84,8 @@ struct Home: View {
                     }
                 }
                 
-                // Product View....
+                
+                //Product View
                 let columns = Array(repeating: GridItem(.flexible(), spacing: 15), count: 2)
                 
                 ScrollView(.vertical, showsIndicators: false){
@@ -92,15 +93,26 @@ struct Home: View {
                     LazyVGrid(columns: columns, spacing: 15) {
                         
                         //Product....
-                        ForEach(products){product in
-                            CardView(product: product)
-                            
+                        if baseData.homeTab == "Breakfood" {
+                            ForEach(breakfood){product in
+                                CardView(product: product)
+                            }
+                        } else if baseData.homeTab == "Lunch" {
+                            ForEach(lunch){product in
+                                CardView(product: product)
+                            }
+                        } else if baseData.homeTab == "Dinner" {
+                            ForEach(dinner){product in
+                                CardView(product: product)
+                            }
                         }
                     }
                 }
             }
             .padding()
     }
+    
+    
     @ViewBuilder
     func CardView(product: Product) -> some View {
         
@@ -145,6 +157,7 @@ struct Home: View {
         .background(Color.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 12))
     }
     
+    
     @ViewBuilder
     func SegmentButton(icon: String, title: String) -> some View {
         
@@ -153,6 +166,7 @@ struct Home: View {
             //withAnimation(baseData.homeTab = title, <#() throws -> _#>)
             //withAnimation(<#T##animation: Animation?##Animation?#>, <#T##body: () throws -> Result##() throws -> Result#>)
             withAnimation{baseData.homeTab = title}
+            
         } label: {
             
             HStack(spacing: 8){
