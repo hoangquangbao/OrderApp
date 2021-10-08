@@ -110,13 +110,14 @@ struct Home: View {
                 }
             }
             .padding()
+            .padding(.bottom,50)
     }
     
     
     @ViewBuilder
     func CardView(product: Product) -> some View {
         
-        VStack(spacing: 15){
+        VStack(spacing: 10){
             
             Button {
                 
@@ -151,7 +152,27 @@ struct Home: View {
 //                            .padding(-9)
 //                    }
 //                )
+            
+            Text(product.productTitle)
+                .fontWeight(.semibold)
+                .padding(.top)
+            
+            Text(product.productPrice)
+                .font(.title2.bold())
+            
+            //Start View....
+            HStack(spacing: 4){
                 
+                ForEach(1...5, id: \.self){index in
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 9))
+                        .foregroundColor(product.productRating >= index ? .yellow : .gray.opacity(0.2))
+                }
+                
+                Text(" (\(product.productRating).0)")
+                    .font(.caption.bold())
+                    .foregroundColor(.gray)
+            }
         }
         .padding()
         .background(Color.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 12))
@@ -202,9 +223,7 @@ struct Home: View {
             }
             )
         }
-
     }
-    
 }
 
 struct Home_Previews: PreviewProvider {
