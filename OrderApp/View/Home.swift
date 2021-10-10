@@ -14,103 +14,125 @@ struct Home: View {
     @EnvironmentObject var baseData: BaseViewModel
     
     var body: some View {
+        
+        VStack(spacing: 15){
             
-            VStack(spacing: 15){
+            HStack{
                 
-                HStack{
-                     
-                    Button {
-                        
-                    } label: {
-                        
-                        Image(systemName: "line.3.horizontal")
-                            .font(.system(size: 25, weight: .bold))
-                    }
+                Button {
                     
-                    Spacer()
+                } label: {
                     
-                    Button {
-                        
-                    } label: {
-                        
-                        Image(systemName: "heart.fill")
-                            .font(.system(size: 25, weight: .bold))
-                    }
-
+                    Image(systemName: "line.3.horizontal")
+                        .font(.system(size: 25, weight: .bold))
                 }
-                .foregroundColor(.red)
                 
-                .overlay(Image("DiLuuQuan Logo")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 200)
-                )
+                Spacer()
                 
-                HStack{
+                Button {
                     
-                    Text("Our Production")
-                        .font(.title2.bold())
+                } label: {
                     
-                    Spacer()
+                    Image(systemName: "magnifyingglass")
+                        .font(.system(size: 25, weight: .bold))
+                }
+                
+            }
+            .foregroundColor(.black)
+            
+            .overlay(Image("DiLuuQuan Logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 200)
+            )
+            
+            HStack{
+                
+                Text("Our Production")
+                    .font(.title2.bold())
+                
+                Spacer()
+                
+                Button {
                     
-                    Button {
+                } label: {
+                    
+                    HStack(spacing: 3){
                         
-                    } label: {
+                        Text("Softby")
+                            .font(.caption.bold())
                         
-                        HStack(spacing: 3){
-                            
-                            Text("Softby")
-                                .font(.caption.bold())
-                            
-                            Image(systemName: "chevron.down")
-                                .font(.caption.bold())
+                        Image(systemName: "chevron.down")
+                            .font(.caption.bold())
+                    }
+                    .foregroundColor(.gray)
+                }
+            }
+            .padding(.top,20)
+            
+            // Custom segment tab....
+            ScrollView(.horizontal, showsIndicators: false){
+                
+                HStack(spacing: 18){
+                    
+                    //Segmenttab....
+                    SegmentButton(icon: "sun.and.horizon.fill", title: "Breakfood")
+                    
+                    SegmentButton(icon: "sun.max.fill", title: "Lunch")
+                    
+                    SegmentButton(icon: "moon.stars.fill", title: "Dinner")
+                }
+            }
+            
+            
+            //Product View
+            let columns = Array(repeating: GridItem(.flexible(), spacing: 15), count: 2)
+            
+            ScrollView(.vertical, showsIndicators: false){
+                //Grid View....
+                LazyVGrid(columns: columns, spacing: 15) {
+                    
+                    //Product....
+                    if baseData.homeTab == "Breakfood" {
+                        ForEach(breakfood){product in
+                            CardView(product: product)
+                                .onTapGesture {
+                                    withAnimation {
+                                        baseData.currentProduct = product
+                                        baseData.showDetail = true
+                                    }
+                                }
                         }
-                        .foregroundColor(.gray)
-                    }
-                }
-                .padding(.top,20)
-                
-                // Custom segment tab....
-                ScrollView(.horizontal, showsIndicators: false){
-                    
-                    HStack(spacing: 18){
-                        
-                        //Segmenttab....
-                        SegmentButton(icon: "sun.and.horizon.fill", title: "Breakfood")
-                        
-                        SegmentButton(icon: "sun.max.fill", title: "Lunch")
-                        
-                        SegmentButton(icon: "moon.stars.fill", title: "Dinner")
-                    }
-                }
-                
-                
-                //Product View
-                let columns = Array(repeating: GridItem(.flexible(), spacing: 15), count: 2)
-                
-                ScrollView(.vertical, showsIndicators: false){
-                    //Grid View....
-                    LazyVGrid(columns: columns, spacing: 15) {
-                        
-                        //Product....
-                        if baseData.homeTab == "Breakfood" {
-                            ForEach(breakfood){product in
-                                CardView(product: product)
-                            }
-                        } else if baseData.homeTab == "Lunch" {
-                            ForEach(lunch){product in
-                                CardView(product: product)
-                            }
-                        } else if baseData.homeTab == "Dinner" {
-                            ForEach(dinner){product in
-                                CardView(product: product)
-                            }
+                    } else if baseData.homeTab == "Lunch" {
+                        ForEach(lunch){product in
+                            CardView(product: product)
+                                .onTapGesture {
+                                    withAnimation {
+                                        baseData.currentProduct = product
+                                        baseData.showDetail = true
+                                    }
+                                }
+                        }
+                    } else if baseData.homeTab == "Dinner" {
+                        ForEach(dinner){product in
+                            CardView(product: product)
+                                .onTapGesture {
+                                    withAnimation {
+                                        baseData.currentProduct = product
+                                        baseData.showDetail = true
+                                    }
+                                }
                         }
                     }
                 }
             }
-            .padding()
-            .padding(.bottom,50)
+        }
+        .padding()
+        .padding(.bottom,50)
+        
+        .overlay(
+            DetailView(animation: animation)
+                .environmentObject(baseData))
     }
     
     
@@ -119,46 +141,65 @@ struct Home: View {
         
         VStack(spacing: 10){
             
-            Button {
+            HStack{
+                Text(product.productPrice)
+                    .font(.title2.bold())
                 
-            } label: {
-                Image(systemName: "suit.heart.fill")
-                    .font(.system(size: 13))
-                    .foregroundColor(product.isLike ? .white : .gray)
-                    .padding(5)
-                    .background(
-
-                        Color.red.opacity(product.isLike ? 1 : 0),
-                        in: Circle()
-                    )
+                Button {
+                    
+                } label: {
+                    Image(systemName: "suit.heart.fill")
+                        .font(.system(size: 13))
+                        .foregroundColor(product.isLike ? .white : .gray)
+                        .padding(5)
+                        .background(
+                            Color.red.opacity(product.isLike ? 1 : 0),
+                            in: Circle()
+                        )
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            .frame(maxWidth: .infinity, alignment: .trailing)
+            
+//            Button {
+//
+//            } label: {
+//                Image(systemName: "suit.heart.fill")
+//                    .font(.system(size: 13))
+//                    .foregroundColor(product.isLike ? .white : .gray)
+//                    .padding(5)
+//                    .background(
+//
+//                        Color.red.opacity(product.isLike ? 1 : 0),
+//                        in: Circle()
+//                    )
+//            }
+//            .frame(maxWidth: .infinity, alignment: .trailing)
             
             Image(product.productImage)
                 .resizable()
                 .frame(height: 155)
                 .aspectRatio(contentMode: .fit)
                 //.cornerRadius(3)
-                .rotationEffect(.init(degrees: -5))
-//                .background(
-//
-//                    ZStack{
+                .rotationEffect(.init(degrees: 5))
+                .background(
+
+                    ZStack{
 //                        Circle()
 //                            .fill(product.productBG)
 //                            .padding(-15)
-//                        //White Inner Circle...
-//                        Circle()
-//                            .stroke(Color.white, lineWidth: 1.4)
-//                            .padding(-9)
-//                    }
-//                )
+                        //White Inner Circle...
+                        Circle()
+                            .stroke(Color.white, lineWidth: 1.4)
+                            .padding(-9)
+                    }
+                )
             
             Text(product.productTitle)
                 .fontWeight(.semibold)
                 .padding(.top)
             
-            Text(product.productPrice)
-                .font(.title2.bold())
+//            Text(product.productPrice)
+//                .font(.title2.bold())
             
             //Start View....
             HStack(spacing: 4){
