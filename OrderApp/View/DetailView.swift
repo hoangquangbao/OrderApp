@@ -63,15 +63,57 @@ struct DetailView: View {
                     .resizable()
                     //.frame(height: 155)
                     .aspectRatio(contentMode: .fit)
+                    .matchedGeometryEffect(id: product.productImage, in: animation)
                     //.cornerRadius(3)
-                    //.rotationEffect(.init(degrees: 5))
-                    .background(
-                        //Rectangle
-                    )
+//                    .background(
+//
+//                        ZStack{
+//                            Rectangle()
+//                                .fill(product.productBG)
+//                                .padding(-10)
+//                            //White Inner Circle...
+////                            Rectangle()
+////                                .stroke(Color.white, lineWidth: 1.4)
+////                                .padding(-5)
+//
+//                        }
+//                            .opacity(0.5)
+//                    )
+                    .cornerRadius(10)
+                    .rotationEffect(.init(degrees: 3))
+
+                    //.frame(height: getScreenBounds().height / 3)
+                    .padding(.top,50)
                 
+                //Product Details....
+                VStack(alignment: .leading, spacing: 15){
+                    
+                    HStack{
+                        
+                        Text(product.productTitle)
+                            .font(.title.bold())
+                        
+                        Spacer(minLength: 10)
+                        
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                        
+                        Text("(\(product.productRating))")
+                            .foregroundColor(.gray)
+                    }
+                }
+                .padding(.top)
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .background(
+                    Color.gray
+                        .opacity(0.2)
+                        //.cornerRadius(20)
+                        .ignoresSafeArea(.container, edges: .bottom)
+                )
             }
             .padding()
-            //.padding(.vertical)
+            .padding(.vertical)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(.white)
             //.transition(.opacity)
@@ -84,3 +126,11 @@ struct DetailView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+// Extending  View to get screen Bounds....
+//extension View{
+//
+//    func getScreenBounds() -> CGRect {
+//        return UIScreen.main.bounds
+//    }
+//}

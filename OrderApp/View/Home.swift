@@ -128,7 +128,7 @@ struct Home: View {
             }
         }
         .padding()
-        .padding(.bottom,50)
+        .padding(.bottom,30)
         
         .overlay(
             DetailView(animation: animation)
@@ -181,18 +181,20 @@ struct Home: View {
                 .aspectRatio(contentMode: .fit)
                 //.cornerRadius(3)
                 .rotationEffect(.init(degrees: 5))
-                .background(
+                .matchedGeometryEffect(id: product.productImage, in: animation)
 
-                    ZStack{
+//                .background(
+//
+//                    ZStack{
 //                        Circle()
 //                            .fill(product.productBG)
 //                            .padding(-15)
-                        //White Inner Circle...
-                        Circle()
-                            .stroke(Color.white, lineWidth: 1.4)
-                            .padding(-9)
-                    }
-                )
+//                        White Inner Circle...
+//                        Circle()
+//                            .stroke(Color.white, lineWidth: 1.4)
+//                            .padding(-9)
+//                    }
+//                )
             
             Text(product.productTitle)
                 .fontWeight(.semibold)
