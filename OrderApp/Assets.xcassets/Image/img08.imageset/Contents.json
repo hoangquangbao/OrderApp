@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Roasted Vegetables with Garlic and Herbs.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Roasted Vegetables with Garlic and Herbs@2x.jpeg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Roasted Vegetables with Garlic and Herbs@3x.jpeg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

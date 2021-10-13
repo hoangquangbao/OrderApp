@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Broccoli and Mushroom Stir-Fry.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Broccoli and Mushroom Stir-Fry@2x.jpeg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Broccoli and Mushroom Stir-Fry@3x.jpeg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

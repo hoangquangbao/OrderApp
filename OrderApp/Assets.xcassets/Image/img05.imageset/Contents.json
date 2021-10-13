@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Garlic Herb Roasted Potatoes Carrots and Zucchini.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Garlic Herb Roasted Potatoes Carrots and Zucchini@2x.jpeg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Garlic Herb Roasted Potatoes Carrots and Zucchini@3x.jpeg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

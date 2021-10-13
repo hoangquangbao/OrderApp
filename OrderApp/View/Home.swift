@@ -86,11 +86,11 @@ struct Home: View {
             
             
             //Product View
-            let columns = Array(repeating: GridItem(.flexible(), spacing: 15), count: 2)
+            let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 2)
             
             ScrollView(.vertical, showsIndicators: false){
                 //Grid View....
-                LazyVGrid(columns: columns, spacing: 15) {
+                LazyVGrid(columns: columns, spacing: 10) {
                     
                     //Product....
                     if baseData.homeTab == "Breakfood" {
@@ -139,11 +139,18 @@ struct Home: View {
     @ViewBuilder
     func CardView(product: Product) -> some View {
         
-        VStack(spacing: 10){
+        VStack(spacing: 8){
             
-            HStack{
-                Text(product.productPrice)
-                    .font(.title2.bold())
+            HStack(){
+                
+                if(product.freeDelivery){
+                    Text("FREE DELIVERY")
+                        .font(.system(size: 8, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(5)
+                        .background(.red)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
                 
                 Button {
                     
@@ -160,51 +167,27 @@ struct Home: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
-//            Button {
-//
-//            } label: {
-//                Image(systemName: "suit.heart.fill")
-//                    .font(.system(size: 13))
-//                    .foregroundColor(product.isLike ? .white : .gray)
-//                    .padding(5)
-//                    .background(
-//
-//                        Color.red.opacity(product.isLike ? 1 : 0),
-//                        in: Circle()
-//                    )
-//            }
-//            .frame(maxWidth: .infinity, alignment: .trailing)
-            
             Image(product.productImage)
                 .resizable()
-                .frame(height: 155)
                 .aspectRatio(contentMode: .fit)
-                //.cornerRadius(3)
-                .rotationEffect(.init(degrees: 5))
-                .matchedGeometryEffect(id: product.productImage, in: animation)
+                .frame(height: 250)
+            
+            
+//                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 
-//                .background(
-//
-//                    ZStack{
-//                        Circle()
-//                            .fill(product.productBG)
-//                            .padding(-15)
-//                        White Inner Circle...
-//                        Circle()
-//                            .stroke(Color.white, lineWidth: 1.4)
-//                            .padding(-9)
-//                    }
-//                )
+                //.frame(maxWidth: .infinity, maxHeight: .infinity)
+                //.cornerRadius(3)
+                .rotationEffect(.init(degrees: -5))
+                .matchedGeometryEffect(id: product.productImage, in: animation)
             
             Text(product.productTitle)
                 .fontWeight(.semibold)
+                .lineLimit(2)
                 .padding(.top)
-            
-//            Text(product.productPrice)
-//                .font(.title2.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             //Start View....
-            HStack(spacing: 4){
+            HStack(spacing: 2){
                 
                 ForEach(1...5, id: \.self){index in
                     Image(systemName: "star.fill")
@@ -215,9 +198,16 @@ struct Home: View {
                 Text(" (\(product.productRating).0)")
                     .font(.caption.bold())
                     .foregroundColor(.gray)
+                
+                Spacer()
+                
+                Text(product.productPrice)
+                    .fontWeight(.bold)
+                    .padding(.trailing, 2)
+//                    .foregroundColor(.yel)
             }
         }
-        .padding()
+        .padding(5)
         .background(Color.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 12))
     }
     
@@ -226,11 +216,7 @@ struct Home: View {
     func SegmentButton(icon: String, title: String) -> some View {
         
         Button {
-            
-            //withAnimation(baseData.homeTab = title, <#() throws -> _#>)
-            //withAnimation(<#T##animation: Animation?##Animation?#>, <#T##body: () throws -> Result##() throws -> Result#>)
             withAnimation{baseData.homeTab = title}
-            
         } label: {
             
             HStack(spacing: 8){

@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Grilled Garlic and Herb Chicken and Veggies.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Grilled Garlic and Herb Chicken and Veggies@2x.jpeg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Grilled Garlic and Herb Chicken and Veggies@3x.jpeg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
