@@ -57,6 +57,12 @@ struct DetailView: View {
                     
                     Text("Description")
                         //.foregroundColor(.gray)
+                    
+                    Text("\(product.description)")
+                        .lineLimit(5)
+                        //.multilineTextAlignment(.)
+                        .foregroundColor(.gray.opacity(0.9))
+                        //.font(.system(size: 15, weight: ., design: <#T##Font.Design#>))
                 }
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
