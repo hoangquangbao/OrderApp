@@ -20,24 +20,55 @@ struct DetailView: View {
             VStack(spacing: 10){
                 
                 //Product Image....
-                Image(product.productImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: 300)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                    .edgesIgnoringSafeArea(.top)
-                    .matchedGeometryEffect(id: product.productImage, in: animation)
+                ZStack(alignment: .top){
+                    Image(product.productImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        //.frame(height: 300)
+//                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        .edgesIgnoringSafeArea(.top)
+                        .matchedGeometryEffect(id: product.productImage, in: animation)
+                    
+                    HStack{
+                        Button {
+                            withAnimation{baseData.showDetail = false}
+                        } label: {
+                            
+                            Image(systemName: "arrow.backward")
+                                .font(.system(size: 25, weight: .bold))
+                                .foregroundColor(.black)
+                                .padding(6)
+                                .background(.white,in: Circle())
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            
+                        } label: {
+                            
+                            Image(systemName: "heart.fill")
+                                .font(.system(size: 22))
+                                .foregroundColor(.red)
+                                .padding(8)
+                                .background(.white,in: Circle())
+                        }
+                    }
+                    .padding()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+
                 
-//                VStack(alignment: .leading){
+                //                VStack(alignment: .leading){
                 VStack(alignment: .leading, spacing: 10){
                     
                     Text(product.productTitle)
                         .font(.title.bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
-//                        .padding(.horizontal)
-
+                    //                        .padding(.horizontal)
+                    
                     HStack{
-                                                
+                        
                         ForEach(1...5, id: \.self){index in
                             Image(systemName: "star.fill")
                                 .font(.system(size: 15))
@@ -56,13 +87,13 @@ struct DetailView: View {
                     }
                     
                     Text("Description")
-                        //.foregroundColor(.gray)
+                    //.foregroundColor(.gray)
                     
                     Text("\(product.description)")
                         .lineLimit(5)
-                        //.multilineTextAlignment(.)
+                    //.multilineTextAlignment(.)
                         .foregroundColor(.gray.opacity(0.9))
-                        //.font(.system(size: 15, weight: ., design: <#T##Font.Design#>))
+                    //.font(.system(size: 15, weight: ., design: <#T##Font.Design#>))
                 }
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -72,42 +103,31 @@ struct DetailView: View {
                         .ignoresSafeArea(.container, edges: .bottom)
                 )
                 
+                HStack{
+                    Button(action: {}, label: {
+                        Text("View Cart")
+                            .fontWeight(.bold)
+                            .padding(5)
+                            .padding(.horizontal)
+                            .background(.white, in: RoundedRectangle(cornerRadius: 12))
+                    })
+                    
+                    Spacer(minLength: 10)
+                    
+                    Button(action: {}, label: {
+                        Text("Add to Cart")
+                            .fontWeight(.bold)
+                            .padding(5)
+                            .padding(.horizontal)
+                            .background(.white, in: RoundedRectangle(cornerRadius: 12))
+                    })
+                }
+                .padding()
+                .background(.purple)
+                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(.white)
-            
-            .overlay(
-                
-                //top bar....
-                HStack{
-                    Button {
-                        withAnimation{baseData.showDetail = false}
-                    } label: {
-                        
-                        Image(systemName: "arrow.backward")
-                            .font(.system(size: 25, weight: .bold))
-                            .foregroundColor(.black)
-                            .padding(6)
-                            .background(.white,in: Circle())
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        
-                    } label: {
-                        
-                        Image(systemName: "heart.fill")
-                            .font(.system(size: 22))
-                            .foregroundColor(.red)
-                            .padding(8)
-                            .background(.white,in: Circle())
-                    }
-                }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                    .padding(.leading)
-                    .padding(.trailing)
-            )
         }
     }
 }
