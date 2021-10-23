@@ -19,16 +19,16 @@ struct DetailView: View {
             
             VStack(spacing: 10){
                 
-                //Product Image....
-                ZStack(alignment: .top){
+                GeometryReader{geo in
                     Image(product.productImage)
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        //.frame(height: 300)
-//                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geo.size.width, height: geo.size.height)
                         .edgesIgnoringSafeArea(.top)
                         .matchedGeometryEffect(id: product.productImage, in: animation)
-                    
+                }
+                
+                .overlay(
                     HStack{
                         Button {
                             withAnimation{baseData.showDetail = false}
@@ -54,18 +54,14 @@ struct DetailView: View {
                                 .background(.white,in: Circle())
                         }
                     }
-                    .padding()
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-
+                        .padding()
+                    ,alignment: .top
+                )
                 
-                //                VStack(alignment: .leading){
                 VStack(alignment: .leading, spacing: 10){
                     
                     Text(product.productTitle)
                         .font(.title.bold())
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    //                        .padding(.horizontal)
                     
                     HStack{
                         
@@ -87,44 +83,41 @@ struct DetailView: View {
                     }
                     
                     Text("Description")
-                    //.foregroundColor(.gray)
                     
                     Text("\(product.description)")
                         .lineLimit(5)
-                    //.multilineTextAlignment(.)
                         .foregroundColor(.gray.opacity(0.9))
-                    //.font(.system(size: 15, weight: ., design: <#T##Font.Design#>))
                 }
                 .padding()
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .background(
                     Color.white
-                        .cornerRadius(30)
-                        .ignoresSafeArea(.container, edges: .bottom)
                 )
+                .cornerRadius(30)
+//                .offset(y: -30)
+                .offset(y: -50)
+                
+                
                 
                 HStack{
                     Button(action: {}, label: {
                         Text("View Cart")
-                            .fontWeight(.bold)
-                            .padding(5)
-                            .padding(.horizontal)
-                            .background(.white, in: RoundedRectangle(cornerRadius: 12))
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 150, height: 40, alignment: .center)
+                            .background(.gray, in: RoundedRectangle(cornerRadius: 12))
                     })
                     
                     Spacer(minLength: 10)
                     
                     Button(action: {}, label: {
                         Text("Add to Cart")
-                            .fontWeight(.bold)
-                            .padding(5)
-                            .padding(.horizontal)
-                            .background(.white, in: RoundedRectangle(cornerRadius: 12))
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 150, height: 40, alignment: .center)
+                            .background(.pink, in: RoundedRectangle(cornerRadius: 12))
                     })
                 }
-                .padding()
-                .background(.purple)
-                
+                .padding(.horizontal)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(.white)
